@@ -7,4 +7,4 @@ from wtforms.validators import InputRequired     #validores
 class Search(FlaskForm):     # 
     
     name = TextField('name')
-    btn = SubmitField('search')
+    btn = SubmitField('Buscar')
