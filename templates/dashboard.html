@@ -24,26 +24,21 @@
 
         <div class="row">
             <div class="col-6">
-                <form class="row g-3">
+
+                <form name='search' id="search" class="row g-3" action="/buscar" method="POST">
                     <div class="col-auto">
-                        <label for="staticEmail2" class="visually-hidden">Busqueda de Empleado</label>
-                        <input type="text" readonly class="form-control-plaintext" id="staticEmail2"
-                            value="Busqueda de Empleado">
+                        <div class="label">{{form.name.label}}</div>
+                        <div>{{form.name(size=40, maxlength=40, placeholder="algo" )}}</div>
                     </div>
                     <div class="col-auto">
-                        <label for="inputPassword2" class="visually-hidden">Nombre</label>
-                        <input type="password" class="form-control" id="inputPassword2"
-                            placeholder="Nombre o documento">
-                    </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+                        {{form.btn()}}
                     </div>
                 </form>
             </div>
             <div class="col-3">
-              </div>
+            </div>
             <div class="col-3">
-                 <button type="button" class="btn btn-primary">Agregar Empleado</button>
+                <a type="button" class="btn btn-primary" href="/crear">Agregar Empleado</a>
             </div>
         </div>
 
@@ -67,38 +62,25 @@
             </thead>
 
             <tbody>
+
+                {% for empleado in data.empleados %}
+
                 <tr>
-                    <td>Carlos </td>
-                    <td>Moron </td>
-                    <td>Auxiliar tecnico </td>
-                    <td>16/08/2020 </td>
-                    <td>Obra labor </td>
-                    <td>17/12/2021 </td>
-                    <td>Aseo y limpieza </td>
-                    <td>$ 800.000 </td>
-                    <td>Felicitarte </td>
-                    <td>100 </td>
+                    <td> {{ empleado.nombre }} </td>
+                    <td> {{ empleado.apellido }} </td>
+                    <td> {{ empleado.cargo }} </td>
+                    <td> {{ empleado.fecIngreso }} </td>
+                    <td> {{ empleado.tipContrato }} </td>
+                    <td> {{ empleado.terminacion }} </td>
+                    <td> {{ empleado.area }} </td>
+                    <td> {{ empleado.salario }} </td>
+                    <td> {{ empleado.retro }} </td>
+                    <td> {{ empleado.puntaje }} </td>
                     <td><button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</button>
                     </td>
                     <td><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i>Eliminar</button></td>
                 </tr>
-
-                <tr>
-                    <td>Maria </td>
-                    <td>Caballero </td>
-                    <td>Auxiliar tecnico </td>
-                    <td>16/08/2020 </td>
-                    <td>Obra labor </td>
-                    <td>17/12/2021 </td>
-                    <td>Aseo y limpieza </td>
-                    <td>$ 800.000 </td>
-                    <td>Felicitarte por tu buen desempeño laboral sigue asi </td>
-                    <td>100 </td>
-                    <td><button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</button>
-                    </td>
-                    <td><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i>Eliminar</button></td>
-                </tr>
-
+                {% endfor %}
             </tbody>
         </table>
     </div>

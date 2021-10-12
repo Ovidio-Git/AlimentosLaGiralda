@@ -1,0 +1,28 @@
+{
+    "empleados": [
+        {
+            "nombre": "Carlos",
+            "apellido": "Rodriguez",
+            "cargo": "Auxiliar tecnico",
+            "fecIngreso": "16/08/2020",
+            "tipContrato": "Obra labor",
+            "terminacion": "17/12/2021",
+            "area": "Aseo y limpieza",
+            "salario": "$ 800.000",
+            "retro": "Felicitarte",
+            "puntaje": 100
+        },
+        {
+            "nombre": "Luisa",
+            "apellido": "Sanchez",
+            "cargo": "Gerente",
+            "fecIngreso": "11/08/2020",
+            "tipContrato": "Indefinido",
+            "terminacion": "---",
+            "area": "IT",
+            "salario": "$ 20'000.000",
+            "retro": "Excelente labor",
+            "puntaje": 98
+        }
+    ]
+}
