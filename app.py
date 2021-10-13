@@ -41,14 +41,14 @@ def login():
             flash('Por favor diligencie el usuario')
         if len(cla.strip())==0:
             flash('Por favor diligencie la clave')
+            
         if log=='administradorAG' and cla=='123456789':
             flash('Acceso concedido')
-            
             return redirect("/dashboard") # redirecciona a /dashboard
             #return "<h1>Entro Administrador</h1>" #para probar logica de forma individual
+            
         if log=='empleadoAG' and cla=='123456789':
             flash('Acceso concedido')
-
             #return redirect("/empleado") # redirecciona a /Empleado
             return "<h1>Entro Empleado</h1>"
         else:
