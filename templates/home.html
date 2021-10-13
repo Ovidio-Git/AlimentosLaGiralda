@@ -1,0 +1,6 @@
+<!--para extender o utilizar la plantilla principal-->
+{% extends 'plantillaAG.html' %}
+
+{% block cuerpo %}
+    <img class="avatar1" src='{{ url_for("static", filename="img/avatar2.png")}}' alt="Logo de Giralda">
+{% endblock %}
