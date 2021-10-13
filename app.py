@@ -41,15 +41,15 @@ def login():
             flash('Por favor diligencie el usuario')
         if len(cla.strip())==0:
             flash('Por favor diligencie la clave')
-        if log=='wilbhert' and cla=='123456789':
+        if log=='administradorAG' and cla=='123456789':
+            flash('Acceso concedido')
+            
+            return redirect("/dashboard") # redirecciona a /dashboard
+            #return "<h1>Entro Administrador</h1>" #para probar logica de forma individual
+        if log=='empleadoAG' and cla=='123456789':
             flash('Acceso concedido')
 
-            #return redirect("/usuario") # redirecciona a /usuario
-            return "<h1>Entro Administrador</h1>"
-        if log=='Adrian' and cla=='123456789':
-            flash('Acceso concedido')
-
-            #return redirect("/usuario") # redirecciona a /usuario
+            #return redirect("/empleado") # redirecciona a /Empleado
             return "<h1>Entro Empleado</h1>"
         else:
             flash('Usuario o clave invalidos')
@@ -59,7 +59,7 @@ def login():
 
         #return redirect("/donde_sea") # redirecciona a /donde_sea
 
-
+#@app.route('/empleado')
 def searchEmpleado(text, empleados):
     resultado = []
 
