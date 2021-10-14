@@ -3,6 +3,7 @@
         {
             "nombre": "Carlos",
             "apellido": "Rodriguez",
+            "documento": "1045257832",
             "cargo": "Auxiliar tecnico",
             "fecIngreso": "16/08/2020",
             "tipContrato": "Obra labor",
@@ -10,11 +11,13 @@
             "area": "Aseo y limpieza",
             "salario": "$ 800.000",
             "retro": "Felicitarte",
-            "puntaje": 100
+            "puntaje": 100,
+            "tipoUsuario": "Empleado"
         },
         {
             "nombre": "Luisa",
             "apellido": "Sanchez",
+            "documento": "25199999",
             "cargo": "Gerente",
             "fecIngreso": "11/08/2020",
             "tipContrato": "Indefinido",
@@ -22,7 +25,8 @@
             "area": "IT",
             "salario": "$ 20'000.000",
             "retro": "Excelente labor",
-            "puntaje": 98
+            "puntaje": 98,
+            "tipoUsuario": "Empleado"
         }
     ]
 }

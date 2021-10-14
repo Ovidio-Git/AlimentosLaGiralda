@@ -27,7 +27,7 @@
 
                 <form name='search' id="search" class="row g-3" action="/buscar" method="POST">
                     <div class="col-auto">
-                        <div>{{form.name(class_="form-control", size=40, maxlength=40, placeholder="Busqueda por nombre" )}}</div>
+                        <div>{{form.name(class_="form-control", size=40, maxlength=40, placeholder="Busqueda por Documento" )}}</div>
                     </div>
                     <div class="col-auto">
                         {{form.btn(class_="btn btn-primary")}}
@@ -45,16 +45,16 @@
         <table class="table align-middle">
             <thead class="align-middle">
                 <tr>
+                    <th>Documento </th>
                     <th>Nombre </th>
                     <th>Apellido </th>
-                    <th>cargo </th>
+                    <th>Cargo </th>
                     <th>Fecha de ingreso </th>
                     <th>Tipo de contrato </th>
                     <th>Terminacion de contrato </th>
                     <th>Area </th>
                     <th>Salario devengado </th>
                     <th>Retroalimentacion </th>
-                    <th>Puntaje </th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -65,6 +65,7 @@
                 {% for empleado in data.empleados %}
 
                 <tr>
+                    <td> {{ empleado.documento }}</td>
                     <td> {{ empleado.nombre }} </td>
                     <td> {{ empleado.apellido }} </td>
                     <td> {{ empleado.cargo }} </td>
@@ -74,7 +75,6 @@
                     <td> {{ empleado.area }} </td>
                     <td> {{ empleado.salario }} </td>
                     <td> {{ empleado.retro }} </td>
-                    <td> {{ empleado.puntaje }} </td>
                     <td><button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</button>
                     </td>
                     <td><button type="button" class="btn btn-danger"><i class="bi bi-trash"></i>Eliminar</button></td>

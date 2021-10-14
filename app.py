@@ -1,9 +1,15 @@
 from flask import Flask, render_template
 from flask import request
 from utils.jsonUtils import loadStartData
+from markupsafe import escape
+
+# Formularios
 from forms import Search
 from forms import LogIn
-from markupsafe import escape
+from forms import Form
+
+from flask import redirect
+
 
 import os
 
@@ -12,6 +18,40 @@ app.secret_key = os.urandom(24)
 
 # ----------------variables globales
 sesion_iniciada = False   #Creamos esta variable con su valor inicial para validar
+
+
+# ---------------- Funciones
+def searchEmpleado(text, empleados):
+    resultado = []
+
+    if (text == ''):
+        return empleados
+
+    for empleado in empleados:
+        if (empleado['documento'] == text):
+            resultado.append(empleado)
+
+    return resultado
+
+def crearEmpleado(form, empleados):
+    nuevoEmpleado = {
+        'nombre': form["nombre"],
+        "apellido": form["apellido"],
+        "documento": form["documento"],
+        "cargo":form["cargo"],
+        "fecIngreso": form["fecIngreso"],
+        "tipContrato": form["tipoContrato"],
+        "terminacion": form["terminacion"],
+        "area": form["area"],
+        "salario": form["salario"],
+        "retro": form["retro"],
+        "puntaje": form["puntaje"],
+        "tipoUsuario": "Empleado"
+    }
+
+    empleados.append(nuevoEmpleado)
+    return True
+
 
 # ----------------A partir de aqui las rutas -------------------
 @app.route('/')
@@ -38,21 +78,21 @@ def login():
         cla = escape(request.form['pwd'])
         #validar los datos
         if len(log.strip())==0:
-            flash('Por favor diligencie el usuario')
+            pass#flash('Por favor diligencie el usuario')
         if len(cla.strip())==0:
-            flash('Por favor diligencie la clave')
+            pass#flash('Por favor diligencie la clave')
             
         if log=='administradorAG' and cla=='123456789':
-            flash('Acceso concedido')
+            #flash('Acceso concedido')
             return redirect("/dashboard") # redirecciona a /dashboard
             #return "<h1>Entro Administrador</h1>" #para probar logica de forma individual
             
-        if log=='empleadoAG' and cla=='123456789':
-            flash('Acceso concedido')
+        if log== 'empleadoAG' and cla=='123456789':
+            #flash('Acceso concedido') 
             #return redirect("/empleado") # redirecciona a /Empleado
             return "<h1>Entro Empleado</h1>"
         else:
-            flash('Usuario o clave invalidos')
+            #flash('Usuario o clave invalidos')
             return "<h1>Parece que Tienes un Usuario o contraseña equivocados</h1>"
         
         #frm=LogIn() #creo un objeto para el formulario
@@ -60,17 +100,7 @@ def login():
         #return redirect("/donde_sea") # redirecciona a /donde_sea
 
 #@app.route('/empleado')
-def searchEmpleado(text, empleados):
-    resultado = []
-
-    if (text == ''):
-        return empleados
-
-    for empleado in empleados:
-        if (empleado['nombre'] == text):
-            resultado.append(empleado)
-
-    return resultado
+    
 
 @app.route('/dashboard')
 def dashboard():
@@ -85,10 +115,17 @@ def search():
     busqueda = searchEmpleado(request.form["name"], data['empleados'])
     return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
 
-@app.route('/crear')
+@app.route('/crear', methods=["GET"])
 def crear():
-    return render_template('layout.html')
+    form = Form()
+    return render_template('layout.html', form = form)
 
+@app.route('/crear', methods=["POST"])
+def accionCrear():
+    if (crearEmpleado(request.form, data['empleados'])):
+        return redirect("/dashboard")
+
+    return render_template('layout.html', form = request.form)
 
 if __name__=='__main__':
     app.run(debug=True)
