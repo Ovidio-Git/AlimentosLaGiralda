@@ -2,15 +2,14 @@
 {% block body %}
 <div class="login-box">
     <img class="avatar" src='{{ url_for("static", filename="img/logo.png")}}' alt="Logo de Giralda">
-    <h1>Bienvenidos</h1>
+    <h1>Bienvenido</h1>
     
     <form name='flogin' id="flogin" action="/login/" method="POST">       
         <div class="label">{{form.usr.label}}</div>
         <div >{{form.usr(size=40, minlength=5, maxlength=40, placeholder="Ingrese Usuario" )}}</div>
-
         <div>{{form.pwd.label}}</div>
         <div>{{form.pwd(size=40, minlength=5, maxlength=40, placeholder="Ingrese Contraseña")}}</div>
-
+        <br>
         <div>{{form.btn()}}</div>
     </form>
 </div>
