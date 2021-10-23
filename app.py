@@ -140,14 +140,14 @@ def search():
 @app.route('/crear', methods=["GET"])
 def crear():
     form = Form()
-    return render_template('layout.html', form = form)
+    return render_template('crearusuario.html', form = form)
 
 @app.route('/crear', methods=["POST"])
 def accionCrear():
     if (crearEmpleado(request.form)):
         return redirect("/dashboard")
 
-    return render_template('layout.html', form = request.form)
+    return render_template('crearusuario.html', form = request.form)
 
 if __name__=='__main__':
     app.run(debug=True, port=80)

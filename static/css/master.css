@@ -3,7 +3,7 @@ body{
     margin: 0; /*quitamos todos los margenes*/
     padding: 0;
     /*background-image: url('{{ url_for("static", filename="img/campoFreepik.jpg")}}') no-repeat center top;*/ /*Para ubicar bien la imagen de fondo*/
-    background-image: url(../img/campoFreepik.jpg);
+    background-image: url('https://www.trackitagro.com/wp-content/uploads/2021/09/pexels-mark-stebnicki-2749165-scaled.jpg');
     background-size: cover;         /*le doy el tamaño*/
     font-family: sans-serif;        /*el tipo de letra general*/
     height: 100vh; /*alto de la igamen es del 100 del alto del dispositivo*/
@@ -28,7 +28,7 @@ body{
     top: -50px;  /*se coloca -50 para que quede la mitad por fuera del recuadro*/
     left: calc(50% - 50px); /*se coloca para que calcule (el 50% menos 50px que colocamos el top) y lo centre*/
 }
-.avatar1{
+.logo_css{
     width: 200px; 
     height: 200px;
     border-radius: 50%; /*para convertir recuadro en circulo*/

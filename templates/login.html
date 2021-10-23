@@ -1,9 +1,7 @@
-
-{% extends 'plantillaAG.html' %}
-
-{% block cuerpo %}
+{% extends 'layout.html' %}
+{% block body %}
 <div class="login-box">
-    <img class="avatar" src='{{ url_for("static", filename="img/avatar2.png")}}' alt="Logo de Giralda">
+    <img class="avatar" src='{{ url_for("static", filename="img/logo.png")}}' alt="Logo de Giralda">
     <h1>Bienvenidos</h1>
     
     <form name='flogin' id="flogin" action="/login/" method="POST">       
