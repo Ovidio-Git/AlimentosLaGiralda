@@ -174,5 +174,10 @@ def accionCrear():
 
     return render_template('layout.html', form = request.form)
 
+@app.route('/logout/', methods=['GET', 'POST'])
+def logout():
+    session.clear()
+    return redirect('/')
+
 if __name__=='__main__':
     app.run(debug=True, port=80)
