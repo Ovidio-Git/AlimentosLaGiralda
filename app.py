@@ -3,6 +3,10 @@ from flask import request
 from utils.jsonUtils import loadStartData
 from markupsafe import escape
 
+#para mejorar login
+from werkzeug.security import check_password_hash
+from flask import session, flash
+
 # Formularios
 from forms import Search
 from forms import LogIn
@@ -78,7 +82,7 @@ def crearEmpleado(form):
 def main():
     return render_template('home.html', titulo='Home::Alimentos la Giralda')
 
-
+# Ruta de Login
 @app.route("/login/", methods=["GET","POST"])
 def login():
     frm = LogIn()
@@ -91,34 +95,55 @@ def login():
     else:
         sesion_iniciada = True
         #recuperar los datos del formulario
-        
-        log = escape(request.form['usr']) 
-        cla = escape(request.form['pwd'])
-        #validar los datos
-        if len(log.strip())==0:
-            pass#flash('Por favor diligencie el usuario')
-        if len(cla.strip())==0:
-            pass#flash('Por favor diligencie la clave')
-            
-        if log=='administradorAG' and cla=='123456789':
-            #flash('Acceso concedido')
-            return redirect("/dashboard") # redirecciona a /dashboard
-            #return "<h1>Entro Administrador</h1>" #para probar logica de forma individual
-            
-        if log== 'empleadoAG' and cla=='123456789':
-            #flash('Acceso concedido') 
-            #return redirect("/empleado") # redirecciona a /Empleado
-            return "<h1>Entro Empleado</h1>"
+        #log = escape(request.form['usr']) 
+        #cla = escape(request.form['pwd'])
+
+        # se incluyen secuencias de escape para mitigar el riesgo de inyeccion de codigo
+        usu = escape(frm.usr.data.strip())
+        cla = escape(frm.pwd.data.strip())
+
+        #Preparo la consulta
+        sql = f"SELECT Idusuario, contrasena, id_rol FROM Usuarios WHERE Usuario='{usu}'"
+        #Ejecuto la consulta
+        res = ejecutar_sel(sql)
+        #valido el resultado
+        if len(res)>0:
+            #recupero la clave que viene de la base de datos
+            cbd = res[0][1]
+            #compruebo la clave --- debo importar ::  from werkzeug.security import check_password_hash
+            #check_password_hash(cbd,cla):
+            if cbd == cla: # Lo uso asi por que no tengo en este momento para crear las contrasenas con hash
+                #Cargo los datos en una variable de sesion -- tengo que importarla con:: from flask import session
+                # y queda la informacion disponible para compartirlas con otros modulos de la aplicacion
+                session.clear()     #limpio la sesion
+                session['id'] = res[0][0]
+                session['usr'] = usu
+                session['pwd'] = cla
+                session['rol'] = res[0][2]
+
+                if session['rol']==3:
+                    return redirect("/empleado") # redirecciona a /empleado
+                
+                elif session['rol']==2 or session['rol']==1:
+                    return redirect("/dashboard") # redirecciona a /empleado
+                
+                else:
+                    flash('ERROR:: Problemas con tu rol ...')
+                    return render_template("login.html",form=frm, titulo='-Ingreso-::Alimentos la Giralda')
+           
+            else:
+                flash('ERROR: clave invalida ...')
+                return render_template("login.html",form=frm, titulo='Ingreso::Alimentos la Giralda')
+
         else:
-            #flash('Usuario o clave invalidos')
-            return "<h1>Parece que Tienes un Usuario o contraseña equivocados</h1>"
-        
-        #frm=LogIn() #creo un objeto para el formulario
+            flash('Usuario o Clave no valida ...')
+            return render_template("login.html",form=frm, titulo='Ingreso::Alimentos la Giralda')
 
-        #return redirect("/donde_sea") # redirecciona a /donde_sea
-
-#@app.route('/empleado')
-    
+@app.route('/empleado')
+def empleado():
+    flash('Esto es para algun mensaje que necesite')
+    return "<h1>Parece que Tienes un Usuario Empleado Aqui</h1>"   #prueba     
+     
 
 @app.route('/dashboard', methods=["GET"])
 def dashboard():
@@ -148,6 +173,11 @@ def accionCrear():
         return redirect("/dashboard")
 
     return render_template('crearusuario.html', form = request.form)
+
+@app.route('/logout/', methods=['GET', 'POST'])
+def logout():
+    session.clear()
+    return redirect('/')
 
 if __name__=='__main__':
     app.run(debug=True, port=80)
