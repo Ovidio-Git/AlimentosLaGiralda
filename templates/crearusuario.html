@@ -24,12 +24,6 @@
     <br>
     <form name='crear' id="crear" action="/crear" method="POST">
       <div class="row">
-        <div class="col-md-6">
-          <label class="form-label">Documento</label>
-          {{form.documento(class_="form-control")}}
-        </div>
-      </div>
-      <div class="row">
         <div class="form-group col-md-6 ">
           <label>Nombre</label>
           {{form.nombre(class_="form-control")}}
@@ -38,7 +32,19 @@
           <label>Apellido</label>
           {{form.apellido(class_="form-control")}}
         </div>
-
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label class="form-label">Documento de identidad</label>
+          {{form.documento(class_="form-control")}}
+        </div>
+        <div class="col-md-6">
+          <label for="validationCustom03" class="form-label">Ciudad</label>
+          <input type="text" class="form-control" id="validationCustom03" required>
+          <div class="invalid-feedback">
+            Please provide a valid city.
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -68,13 +74,6 @@
         <div class="col-md-6">
           <label class="form-label">Fecha Terminación de contrato</label>
           {{form.terminacion(class_="form-control")}}
-        </div>
-        <div class="col-md-6">
-          <label for="validationCustom03" class="form-label">Ciudad</label>
-          <input type="text" class="form-control" id="validationCustom03" required>
-          <div class="invalid-feedback">
-            Please provide a valid city.
-          </div>
         </div>
       </div>
       <div class="row">
