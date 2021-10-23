@@ -9,7 +9,7 @@ Trabajar con la base de datos real.
 """
 import sqlite3
 
-NOM_BD = 'bdc0332.db'
+NOM_BD = 'lagiralda.db'
 
 def ejecutar_acc(sql) -> int:
     """ Ejecuta consultas de accion : INSERT, DELETE, UPDATE """
