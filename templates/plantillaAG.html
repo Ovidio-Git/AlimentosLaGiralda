@@ -25,9 +25,7 @@
         </div>
        
         {% block cuerpo%} {%endblock%}
-        {%for msg in get_flashed_messages() %}
-            <div class="fila">{{ msg }}</div>
-        {% endfor%}
+        
         
     </body>
 </html>
