@@ -1,0 +1,126 @@
+
+body{
+    margin: 0; /*quitamos todos los margenes*/
+    padding: 0;
+    /*background-image: url('{{ url_for("static", filename="img/campoFreepik.jpg")}}') no-repeat center top;*/ /*Para ubicar bien la imagen de fondo*/
+    background-image: url(../img/campoFreepik.jpg);
+    background-size: cover;         /*le doy el tamaño*/
+    font-family: sans-serif;        /*el tipo de letra general*/
+    height: 100vh; /*alto de la igamen es del 100 del alto del dispositivo*/
+}
+.login-box{
+    width: 300px;
+    height: 400px;
+    background: #fff;       /*defino en blanco el area de login*/
+    color: #000;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);  /*con el traslado lo centro bien el la posicion*/
+    box-sizing: border-box;
+    padding: 70px 30px;  
+}
+.login-box .avatar{
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%; /*para convertir recuadro en circulo*/
+    position: absolute;
+    top: -50px;  /*se coloca -50 para que quede la mitad por fuera del recuadro*/
+    left: calc(50% - 50px); /*se coloca para que calcule (el 50% menos 50px que colocamos el top) y lo centre*/
+}
+.avatar1{
+    width: 200px; 
+    height: 200px;
+    border-radius: 50%; /*para convertir recuadro en circulo*/
+    position: absolute;
+    top: 80px; 
+    left: calc(50% - 50px); /*se coloca para que calcule (el 50% menos 50px que colocamos el top) y lo centre*/
+}
+
+.login-box h1{
+    background-color: transparent;
+    margin: 0; /*quitar los espaciados*/
+    padding: 10px 0 20px;  /*10px arriba  0  20px abajo*/
+    text-align: center;
+    font-size: 24px;
+    
+}
+
+.login-box label {
+    margin: 0; /*quitar los espaciados*/
+    padding: 0;
+    font-weight: bold;
+    display: block;   /*para que este en una sola linea*/
+    
+}
+.login-box input{
+    width: 100%;                /*se coloca para que el input ocupe el 100% del espacio del contenedor*/
+    margin-bottom: 20px;        /*dar un margen de 20px en la parte de abajo*/
+}
+
+.login-box input[type='text'],
+.login-box input[type='password']{
+    border: none;                /*Eliminar los bordes*/
+    border-bottom: 2px solid rgb(112, 187, 109); /*coloco un pequeño borde abajo*/
+    background: transparent;     /*coloco el backgraound transparetes*/
+    outline: none;
+    height: 35px;                /*Altura del control de 35px*/
+    color: #000;               /*se coloca color de texto blanco*/
+    font-size: 16px;
+}
+
+.login-box input[type='submit']{
+    border: none;       /*Eliminar los bordes*/
+    outline: none;
+    height: 35px;        /*Altura del control de 35px*/
+    background: rgb(14, 70, 19);
+    color: #fff;        /*Color a la letra*/
+    font-size: 17px; 
+    border-radius: 10px;  /*para volver un poco ovalado el botton */
+}
+
+.login-box a{
+    text-decoration: none;      /*para quitarle la linea de abajo de link*/
+    font-size: 13px;
+    line-height: 15px;
+    color: rgb(112, 187, 109); /*Color a la letra*/
+}
+
+.login-box a:hover {    /* cambia de color cuando el curso se ubique encima*/
+    color: #fff;
+}
+
+h1 {
+    font-family        : serif;
+    text-align         : center;
+    color              : lightgray;
+    background-color   : rgb(76, 99, 37);
+}
+
+
+.c1 {
+    width      : 10%;
+    display    : inline;
+    float      : left;
+    overflow-x : hidden;
+}
+.c2 {
+    width      : 20%;
+    display    : inline;
+    float      : left;
+    overflow-x : hidden;
+}
+
+.c3 {
+    width      : 30%;
+    display    : inline;
+    float      : left;
+    overflow-x : hidden;
+}
+
+.c4 {
+    width      : 40%;
+    display    : inline;
+    float      : left;
+    overflow-x : hidden;
+}
