@@ -8,6 +8,9 @@ from forms import Search
 from forms import LogIn
 from forms import Form
 
+# Base de datos
+from bdatos import ejecutar_sel, ejecutar_acc, ejecutar_sel_filter
+
 from flask import redirect
 
 
@@ -21,36 +24,51 @@ sesion_iniciada = False   #Creamos esta variable con su valor inicial para valid
 
 
 # ---------------- Funciones
-def searchEmpleado(text, empleados):
-    resultado = []
+def searchEmpleado(text):
 
-    if (text == ''):
-        return empleados
+    nombre = "%" + text + "%"
+    sql = "SELECT * FROM empleados WHERE documento = ? or nombre like ? or apellido like ?"
+    res = ejecutar_sel_filter(sql, (text, nombre, nombre))
 
-    for empleado in empleados:
-        if (empleado['documento'] == text):
-            resultado.append(empleado)
+    empleados = obtenerTablaEmpleados(res)
 
-    return resultado
+    return empleados
 
-def crearEmpleado(form, empleados):
-    nuevoEmpleado = {
-        'nombre': form["nombre"],
-        "apellido": form["apellido"],
-        "documento": form["documento"],
-        "cargo":form["cargo"],
-        "fecIngreso": form["fecIngreso"],
-        "tipContrato": form["tipoContrato"],
-        "terminacion": form["terminacion"],
-        "area": form["area"],
-        "salario": form["salario"],
-        "retro": form["retro"],
-        "puntaje": form["puntaje"],
-        "tipoUsuario": "Empleado"
-    }
+def obtenerTablaEmpleados(datos):
+    empleados = []
 
-    empleados.append(nuevoEmpleado)
-    return True
+    for row in datos:
+        empleado = {
+            "documento":    row[1],
+            'nombre':       row[2],
+            "apellido":     row[3],
+            "cargo":        row[10],
+            "fecIngreso":   row[6],
+            "tipContrato":  row[8],
+            "terminacion":  row[7],
+            "area":         "",
+            "salario":      row[9],
+            "retro":        row[11],
+            "puntaje":      row[12]
+        }
+        empleados.append(empleado)
+    return empleados
+
+def crearEmpleado(form):
+
+    sql = """INSERT INTO empleados (documento, nombre, apellido, edad, profesion, fecingreso, fecterminacion, tipocontrato, salario, cargo, retroalimentacion, puntaje)
+                            VALUES (?,?,?,?,?,?,?,?,?,?,?,?);"""
+
+    
+    nuevoEmpleado = (form["documento"], form["nombre"], form["apellido"], "20", "", form["fecIngreso"], form["terminacion"]
+    , form["tipoContrato"], form["salario"], form["cargo"], form["retro"], form["puntaje"])
+
+    res = ejecutar_acc(sql, nuevoEmpleado)
+
+    if res == 0:
+        return False
+    else:
+        return True
 
 
 # ----------------A partir de aqui las rutas -------------------
@@ -102,17 +120,21 @@ def login():
 #@app.route('/empleado')
     
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=["GET"])
 def dashboard():
-    global data
-    data = loadStartData.data
-    form = Search()
-    return render_template('dashboard.html', data = data, form = form)
 
-@app.route('/buscar', methods=["POST"])
+    sql = "SELECT * FROM empleados"
+    res = ejecutar_sel(sql)
+
+    empleados = obtenerTablaEmpleados(res)
+
+    form = Search()
+    return render_template('dashboard.html', data = {"empleados": empleados}, form = form)
+
+@app.route('/dashboard', methods=["POST"])
 def search():
     form = Search()
-    busqueda = searchEmpleado(request.form["name"], data['empleados'])
+    busqueda = searchEmpleado(request.form["name"])
     return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
 
 @app.route('/crear', methods=["GET"])
@@ -122,10 +144,10 @@ def crear():
 
 @app.route('/crear', methods=["POST"])
 def accionCrear():
-    if (crearEmpleado(request.form, data['empleados'])):
+    if (crearEmpleado(request.form)):
         return redirect("/dashboard")
 
     return render_template('layout.html', form = request.form)
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=80)
