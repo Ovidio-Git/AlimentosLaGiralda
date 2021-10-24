@@ -1,73 +1,66 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <!-- Favicon -->
+    <link rel="icon"   href="{{ url_for('static', filename='img/favicon.ico') }}">  
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
+      <!--stilos propios-->  
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static", filename="css/master.css")}}'/>
+    <title>Alimentos la giralda</title>
+  </head>
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css">
-    <!--stilos propios-->  
-  <link rel="stylesheet" type="text/css" href='{{ url_for("static", filename="css/master.css")}}'/>
-
-  <title>La giralda</title>
-</head>
-
-<body>
-    <header class="bg-primary">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
-            <a class="navbar-brand font-nav" href="/">Alimentos la giralda</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor02">
-                <ul class="navbar-nav ml-auto">
+  <body>
+      <header class="bg-primary">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+              <a class="navbar-brand font-nav" href="/">Alimentos la giralda</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarColor02">
+                  <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link font-navr up" href="/">Inicio <span class="sr-only"></span></a>
+                      <a class="nav-link font-navr up" href="/">Inicio <span class="sr-only"></span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link font-navr up" href="/login">Ingresar</a>
+                      <a class="nav-link font-navr up" href="/login">Ingresar</a>
                     </li>
                 </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="container-fluid">
+              </div>
+          </nav>
+      </header>
+      <div class="container-fluid">
         {% block body %}
         {% endblock %}
-    </div>
+      </div>
 
-  
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
+    <script>
+      (function () {
+        'use strict'
 
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-
-  <script>
-    (function () {
-      'use strict'
-
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.querySelectorAll('.needs-validation')
-
-      // Loop over them and prevent submission
-      Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-          form.addEventListener('submit', function (event) {
-            if (!form.checkValidity()) {
-              event.preventDefault()
-              event.stopPropagation()
-            }
-
-            form.classList.add('was-validated')
-          }, false)
-        })
-    })()
-  </script>
-</body>
-
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+    </script>
+  </body>
 </html>
