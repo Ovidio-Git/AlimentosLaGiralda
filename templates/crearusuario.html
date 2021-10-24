@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-6">
           <label for="validationCustom03" class="form-label">Ciudad</label>
-          <input type="text" class="form-control" id="validationCustom03" required>
+          <input type="text" class="form-control" id="validationCustom03" >
           <div class="invalid-feedback">
             Please provide a valid city.
           </div>
@@ -89,7 +89,7 @@
       <br>
       <div style="display: flex;justify-content:space-around;">
         {{form.btn(class_="btn btn-primary")}}
-        <button type="/dashboard" class="btn btn-danger">Cancelar</button>
+        <button type="button"  class="btn btn-danger" href="/dashboard">Cancelar</button>
       </div>
     </form>
 
