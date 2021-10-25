@@ -99,8 +99,14 @@ def login():
 
         #return redirect("/donde_sea") # redirecciona a /donde_sea
 
-#@app.route('/empleado')
-    
+@app.route('/empleado/', methods=["GET","POST"]) # agrego la ruta de empleado
+def Empleado():
+    data = loadStartData.data
+    form = Search()
+    if request.method == "GET":
+        return render_template('InfoUser.html', form = form, data = data)
+    elif request.method == "POST":
+        return render_template('InfoUser.html', form = form, data = data)
 
 @app.route('/dashboard')
 def dashboard():
