@@ -1,9 +1,18 @@
+/* pinogano font */
+.font-nav {
+    font-size: 25px;
+}
+
+/* links pinogno fonts (home/dashboard) */
+.font-navr{
+    font-size: 18px;
+}
 
 body{
     margin: 0; /*quitamos todos los margenes*/
     padding: 0;
     /*background-image: url('{{ url_for("static", filename="img/campoFreepik.jpg")}}') no-repeat center top;*/ /*Para ubicar bien la imagen de fondo*/
-    background-image: url(../img/campoFreepik.jpg);
+    background-image: url('https://www.trackitagro.com/wp-content/uploads/2021/09/pexels-mark-stebnicki-2749165-scaled.jpg');
     background-size: cover;         /*le doy el tamaño*/
     font-family: sans-serif;        /*el tipo de letra general*/
     height: 100vh; /*alto de la igamen es del 100 del alto del dispositivo*/
@@ -12,6 +21,7 @@ body{
     width: 300px;
     height: 400px;
     background: #fff;       /*defino en blanco el area de login*/
+    border-radius: 10px;
     color: #000;
     top: 50%;
     left: 50%;
@@ -19,6 +29,37 @@ body{
     transform: translate(-50%,-50%);  /*con el traslado lo centro bien el la posicion*/
     box-sizing: border-box;
     padding: 70px 30px;  
+}
+.dash_background{
+    width: auto;
+    height: auto;
+    background: #fff;       /*defino en blanco el area de login*/
+    color: #000;
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);  /*con el traslado lo centro bien el la posicion*/
+    box-sizing: border-box;
+    padding: 70px 30px;  
+}
+.crear_background{
+    width: 90%;
+    height:90%;
+    background: #fff;       /*defino en blanco el area de login*/
+    border-radius: 15px;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);  /*con el traslado lo centro bien el la posicion*/
+}
+.home_logo{
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .login-box .avatar{
     width: 100px; 
@@ -28,7 +69,7 @@ body{
     top: -50px;  /*se coloca -50 para que quede la mitad por fuera del recuadro*/
     left: calc(50% - 50px); /*se coloca para que calcule (el 50% menos 50px que colocamos el top) y lo centre*/
 }
-.avatar1{
+.logo_css{
     width: 200px; 
     height: 200px;
     border-radius: 50%; /*para convertir recuadro en circulo*/
@@ -73,7 +114,7 @@ body{
     border: none;       /*Eliminar los bordes*/
     outline: none;
     height: 35px;        /*Altura del control de 35px*/
-    background: rgb(14, 70, 19);
+    background: rgb(87, 149, 84);;
     color: #fff;        /*Color a la letra*/
     font-size: 17px; 
     border-radius: 10px;  /*para volver un poco ovalado el botton */
@@ -91,10 +132,9 @@ body{
 }
 
 h1 {
-    font-family        : serif;
+    font-family        : sans-serif;
     text-align         : center;
     color              : lightgray;
-    background-color   : rgb(76, 99, 37);
 }
 
 .c1 {

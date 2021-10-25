@@ -17,9 +17,9 @@ class Search(FlaskForm):
     btn = SubmitField('Buscar')
 
 class Form(FlaskForm):
-    nombre = TextField('Nombre')
+    documento = TextField('Documento',validators=[InputRequired()])
+    nombre = TextField('Nombre',validators=[InputRequired()])
     apellido = TextField('Apellido')
-    documento = TextField('Documento')
     cargo = TextField('Cargo')
     fecIngreso = DateField('Fecha de Ingreso')
     tipoContrato = TextField('Tipo de Contrato')
