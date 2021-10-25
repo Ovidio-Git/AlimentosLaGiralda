@@ -139,11 +139,14 @@ def login():
             flash('Usuario o Clave no valida ...')
             return render_template("login.html",form=frm, titulo='Ingreso::Alimentos la Giralda')
 
-@app.route('/empleado')
-def empleado():
-    flash('Esto es para algun mensaje que necesite')
-    return "<h1>Parece que Tienes un Usuario Empleado Aqui</h1>"   #prueba     
-     
+@app.route('/empleado', methods=["GET","POST"]) # agrego la ruta de empleado
+def Empleado():
+    data = loadStartData.data
+    form = Search()
+    if request.method == "GET":
+        return render_template('InfoUser.html', form = form, data = data)
+    elif request.method == "POST":
+        return render_template('InfoUser.html', form = form, data = data)
 
 @app.route('/dashboard', methods=["GET"])
 def dashboard():
