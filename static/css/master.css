@@ -1,3 +1,12 @@
+.botonverde{
+    color: rgb(235, 230, 230);
+    background-color: rgb(87, 149, 84);
+}
+
+.botonamarillo{
+    color: rgb(235, 230, 230);
+    background-color:rgb(219, 170, 96);
+}
 /* pinogano font */
 .font-nav {
     font-size: 25px;

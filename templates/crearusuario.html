@@ -10,13 +10,24 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--stilos propios-->  
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static", filename="css/master.css")}}'/>
     <title>Alimentos la giralda</title>
 </head>
 
 <body>
-    <div class="container-md crear_background">
+    <header class="bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+            <a class="navbar-brand font-nav" href="/crear">
+                <img src="{{ url_for('static', filename='img/favicon.ico') }}" alt="" width="30" height="24" class="d-inline-block align-text-top">Creacion Nuevo Usuario</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </header>
+    <br>
+    <div class="container-md dash_background">
         <br>
-        <h1 class="text-center"><strong>Creacion Nuevo Usuario</strong></h1><br>
         <div style="display: flex;justify-content: center;">
             <img src="https://www.svgrepo.com/show/10678/avatar.svg" width="100" height="100" alt="usuario avatar">
         </div>
@@ -83,13 +94,14 @@
             </div>
             <br>
             <div style="display: flex;justify-content:space-around;">
-                {{form.btn(class_="btn btn-primary")}}
-                <input type="button" class="btn btn-danger" value="Cancelar" onClick="history.go(-1);">
+                {{form.btn(class_="btn botonverde")}}
+                <input type="button" class="btn botonamarillo" value="Cancelar" onClick="history.go(-1);">
 
             </div>
         </form>
+        <br>
     </div>
-
+<br>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
