@@ -161,9 +161,20 @@ def dashboard():
 
 @app.route('/dashboard', methods=["POST"])
 def search():
-    form = Search()
-    busqueda = searchEmpleado(request.form["name"])
-    return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
+    if request.method == "POST": 
+        resquest_value = request.form.get('_method')
+        if resquest_value == 'DELETE':
+            #sql = "DELETE FROM empleados WHERE documento="
+            #res = ejecutar_sel(sql)
+            #empleados = obtenerTablaEmpleados(res)
+            #form = Search()
+            return "owo"
+            #return render_template('dashboard.html', data = {"empleados": empleados}, form = form)
+        else:
+            form = Search()
+            busqueda = searchEmpleado(request.form["name"])
+            return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
+
 
 @app.route('/crear', methods=["GET"])
 def crear():
@@ -183,4 +194,4 @@ def logout():
     return redirect('/')
 
 if __name__=='__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=True)
