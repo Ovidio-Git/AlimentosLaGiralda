@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from flask import request
 from utils.jsonUtils import loadStartData
 from markupsafe import escape
@@ -160,21 +160,17 @@ def dashboard():
     return render_template('dashboard.html', data = {"empleados": empleados}, form = form)
 
 @app.route('/dashboard', methods=["POST"])
-def search():
-    if request.method == "POST": 
-        resquest_value = request.form.get('_method')
-        if resquest_value == 'DELETE':
-            #sql = "DELETE FROM empleados WHERE documento="
-            #res = ejecutar_sel(sql)
-            #empleados = obtenerTablaEmpleados(res)
-            #form = Search()
-            return "owo"
-            #return render_template('dashboard.html', data = {"empleados": empleados}, form = form)
-        else:
-            form = Search()
-            busqueda = searchEmpleado(request.form["name"])
-            return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
+def search(): 
+    form = Search()
+    busqueda = searchEmpleado(request.form["name"])
+    return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
 
+@app.route('/delete/<int:documento_empleado>', methods=('POST',))
+def delete(documento_empleado):
+    print("documento empleado", documento_empleado)
+    sql='DELETE FROM empleados WHERE documento = %s'% (documento_empleado)
+    ejecutar_sel(sql)
+    return redirect(url_for('dashboard'))
 
 @app.route('/crear', methods=["GET"])
 def crear():
