@@ -50,7 +50,7 @@ def obtenerTablaEmpleados(datos):
             "fecIngreso":   row[6],
             "tipContrato":  row[8],
             "terminacion":  row[7],
-            "area":         "",
+            "area":         row[13],
             "salario":      row[9],
             "retro":        row[11],
             "puntaje":      row[12]
