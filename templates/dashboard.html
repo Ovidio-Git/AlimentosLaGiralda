@@ -48,7 +48,7 @@
                                 <div>{{form.name(class_="form-control", size=40, maxlength=40, placeholder="Busqueda por Documento" )}}</div>
                             </div>
                             <div class="col-auto">
-                                {{form.btn(class_="btn btn-success")}}
+                                {{form.btn(class_="btn botonverde")}}
                             </div>
                         </form>
                     </div>
@@ -84,13 +84,13 @@
                             <td> {{ empleado.area }} </td>
                             <td> {{ empleado.salario }} </td>
                             <td> {{ empleado.retro }} </td>
-                            <td><button type="button" class="btn btn-primary"><i class="bi bi-pencil-square"></i>Editar</button>
+                            <td><button type="button" class="btn botonverde"><i class="bi bi-pencil-square"></i>Editar</button>
                             </td>
                             <td>
                                 <form action="{{ url_for('delete', documento_empleado=empleado.documento) }}" method="POST">
                                     <i class="bi bi-trash"></i>
                                     <input type="submit" value="Eliminar"
-                                            class="btn btn-danger btn-sm"
+                                            class="btn botonamarillo btn-sm"
                                             onclick="return confirm('¿Seguro que desea eliminar este empleado?')">
                                 </form>
                             </td>
