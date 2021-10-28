@@ -168,7 +168,8 @@ def search():
 @app.route('/delete/<int:documento_empleado>', methods=('POST',))
 def delete(documento_empleado):
     print("documento empleado", documento_empleado)
-    ejecutar_sel('DELETE FROM empleados WHERE documento = ?', (documento_empleado,))
+    sql='DELETE FROM empleados WHERE documento = %s'% (documento_empleado)
+    ejecutar_sel(sql)
     return redirect(url_for('dashboard'))
 
 @app.route('/crear', methods=["GET"])
