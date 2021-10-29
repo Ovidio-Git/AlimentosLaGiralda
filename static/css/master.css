@@ -45,6 +45,12 @@ body{
     background: #fff;       /*defino en blanco el area de login*/
     border-radius: 15px;
 }
+.info_background{
+    width: 30%;
+    height: auto;
+    background: #fff;       /*defino en blanco el area de login*/
+    border-radius: 15px;
+}
 .crear_background{
     width: 90%;
     height:90%;
@@ -130,7 +136,7 @@ body{
 }
 
 .login-box a:hover {    /* cambia de color cuando el curso se ubique encima*/
-    color: #fff;
+    color: rgb(187, 109, 174);
 }
 
 h1 {
