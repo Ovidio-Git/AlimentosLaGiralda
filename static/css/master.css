@@ -45,10 +45,10 @@ body{
     background: #fff;       /*defino en blanco el area de login*/
     border-radius: 15px;
 }
-.info_background{
+.info_background{               /*creo esta clase para ajustar el with del contenedor de empleado*/
     width: 30%;
     height: auto;
-    background: #fff;       /*defino en blanco el area de login*/
+    background: #fff;       
     border-radius: 15px;
 }
 .crear_background{
