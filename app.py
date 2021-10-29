@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for
 from flask import request
-from utils.jsonUtils import loadStartData
 from markupsafe import escape
 
 #para mejorar login
@@ -43,6 +42,7 @@ def obtenerTablaEmpleados(datos):
 
     for row in datos:
         empleado = {
+            "id":           row[0],
             "documento":    row[1],
             'nombre':       row[2],
             "apellido":     row[3],
@@ -122,7 +122,7 @@ def login():
                 session['rol'] = res[0][2]
 
                 if session['rol']==3:
-                    return redirect("/empleado") # redirecciona a /empleado
+                    return redirect('/empleado/%s'% session['id']) # redirecciona a /empleado
                 
                 elif session['rol']==2 or session['rol']==1:
                     return redirect("/dashboard") # redirecciona a /empleado
@@ -139,14 +139,13 @@ def login():
             flash('Usuario o Clave no valida ...')
             return render_template("login.html",form=frm, titulo='Ingreso::Alimentos la Giralda')
 
-@app.route('/empleado', methods=["GET","POST"]) # agrego la ruta de empleado
-def Empleado():
-    data = loadStartData.data
-    form = Search()
-    if request.method == "GET":
-        return render_template('InfoUser.html', form = form, data = data)
-    elif request.method == "POST":
-        return render_template('InfoUser.html', form = form, data = data)
+@app.route('/empleado/<string:empleado>', methods=["GET","POST"]) # agrego la ruta de empleado
+def Empleado(empleado):
+    sql = "SELECT * FROM empleados where idusuario = ?"
+    res = ejecutar_sel_filter(sql, (empleado))
+
+    if len(res)>0:
+        return render_template('InfoUser.html', info = res[0])
 
 @app.route('/dashboard', methods=["GET"])
 def dashboard():
