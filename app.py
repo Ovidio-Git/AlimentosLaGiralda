@@ -71,6 +71,12 @@ def crearEmpleado(form):
 
     if res == 0:
         return False
+
+    sql2 = """INSERT INTO usuarios VALUES (?,?,?,?);"""
+    res2 = ejecutar_acc(sql2, (res, form["documento"], form["documento"], 3))
+
+    if res2 == 0:
+        return False
     else:
         return True
 
@@ -139,10 +145,10 @@ def login():
             flash('Usuario o Clave no valida ...')
             return render_template("login.html",form=frm, titulo='Ingreso::Alimentos la Giralda')
 
-@app.route('/empleado/<string:empleado>', methods=["GET","POST"]) # agrego la ruta de empleado
+@app.route('/empleado/<int:empleado>', methods=["GET"]) # agrego la ruta de empleado
 def Empleado(empleado):
-    sql = "SELECT * FROM empleados where idusuario = ?"
-    res = ejecutar_sel_filter(sql, (empleado))
+    sql = 'SELECT * FROM empleados where idusuario = %s'% (empleado)
+    res = ejecutar_sel(sql)
 
     if len(res)>0:
         return render_template('InfoUser.html', info = res[0])

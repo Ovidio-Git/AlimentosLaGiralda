@@ -34,6 +34,15 @@
         <br>
         <form name='crear' id="crear" class="row g-3 needs-validation" action="/crear" method="POST" novalidate>
             <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Documento de identidad</label>
+                    {{form.documento(class_="form-control", minlength="5")}}
+                    <div class="invalid-feedback">
+                        Documento es requerido. Mínimo 5 caracteres
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="form-group col-md-6 ">
                     <label>Nombre</label>
                     {{form.nombre(class_="form-control")}}
@@ -44,12 +53,6 @@
                 <div class="form-group col-md-6">
                     <label>Apellido</label>
                     {{form.apellido(class_="form-control")}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Documento de identidad</label>
-                    {{form.documento(class_="form-control")}}
                 </div>
             </div>
             <div class="row">

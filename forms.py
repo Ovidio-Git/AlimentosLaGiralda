@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.recaptcha import validators
 from wtforms import PasswordField, TextField, SubmitField, DateField
-from wtforms.validators import InputRequired     #validores
+from wtforms.validators import InputRequired, Length     #validores
 
 # crea una clase que extiende de Flaskform y se llama Login()
 class LogIn(FlaskForm):     
@@ -17,7 +17,7 @@ class Search(FlaskForm):
     btn = SubmitField('Buscar')
 
 class Form(FlaskForm):
-    documento = TextField('Documento',validators=[InputRequired()])
+    documento = TextField('Documento',validators=[InputRequired(), Length(5, 40, "El documento debe contener al menos %(min)d digitos")])
     nombre = TextField('Nombre',validators=[InputRequired()])
     apellido = TextField('Apellido')
     cargo = TextField('Cargo')

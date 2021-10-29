@@ -14,11 +14,11 @@ NOM_BD = 'lagiralda.db'
 def ejecutar_acc(sql, data) -> int:
     """ Ejecuta consultas de accion : INSERT, DELETE, UPDATE """
     try:
-        with sqlite3.connect(NOM_BD) as con:  # Conectarse a la base de datos
-            cur = con.cursor()                # Crea un área intermedia para gestión de los contenidos
-            res = cur.execute(sql, data).rowcount   # Ejecutar la consulta
-            if res!=0:                        # Verificar si se realizó algún cambio
-                con.commit()                  # Volver permanente el cambio
+        with sqlite3.connect(NOM_BD) as con:         # Conectarse a la base de datos
+            cur = con.cursor()                       # Crea un área intermedia para gestión de los contenidos
+            res = cur.execute(sql, data).lastrowid   # Ejecutar la consulta
+            if res!=0:                               # Verificar si se realizó algún cambio
+                con.commit()                         # Volver permanente el cambio
     except:
         res = 0
     return res
