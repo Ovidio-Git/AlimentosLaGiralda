@@ -149,7 +149,7 @@ def search():
     return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
 
 # Ruta de administradores para editar los datos que se muestran en la tabla de conglomerado de empleados
-@app.route('/editar', methods=('POST',))
+@app.route('/editar', methods=('POST','GET'))
 def editar():
     nombre          = request.form.get('Nombre')
     Documento       = request.form.get('Documento')
