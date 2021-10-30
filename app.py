@@ -9,7 +9,7 @@ from flask import session, flash
 # Formularios
 from forms import Search
 from forms import LogIn
-from forms import Form
+from forms import Form,Form2
 
 # Base de datos
 from bdatos import ejecutar_sel, ejecutar_acc, ejecutar_sel_filter
@@ -165,6 +165,36 @@ def search():
     form = Search()
     busqueda = searchEmpleado(request.form["name"])
     return render_template('dashboard.html', data = {"empleados": busqueda}, form = form)
+
+
+@app.route('/editar', methods=('POST',))
+def editar():
+    # RECEIVE FORM DATA
+    nombre  = request.form.get('Nombre')
+    Documento  = request.form.get('Documento')
+    print("documentales prro: ", Documento)
+    print("nombre prro: ", nombre)
+    Apellido  = request.form.get('Apellido')
+    Cargo  = request.form.get('Cargo')
+    Area  = request.form.get('Area')
+    Salario  = request.form.get('Salario')
+    TipodeContrato  = request.form.get('TipodeContrato')
+    FechaIngreso  = request.form.get('FechaIngreso')
+    FechaTerminaciondecontrato  = request.form.get('FechaTerminaciondecontrato')
+    Puntaje  = request.form.get('Puntaje')
+    Retroalimentacion  = request.form.get('Retroalimentacion')
+    sql=f'UPDATE empleados SET nombre={nombre},apellido={Apellido},cargo={Cargo},Area={Area},puntaje={Puntaje},retroalimentación={Retroalimentacion},salario={Salario},fecingreso={FechaIngreso},fecterminacion={FechaTerminaciondecontrato},tipodeContrato={TipodeContrato}  WHERE documento = {Documento}'
+    print("sql query", sql)
+    ejecutar_sel(sql)
+    return redirect(url_for('dashboard'))
+
+@app.route('/editar/<int:documento_empleado>', methods=["GET"])
+def paginaEditar(documento_empleado):
+    sql = 'SELECT * FROM empleados WHERE documento = %s'% (documento_empleado)
+    empleado = ejecutar_sel(sql)
+    print("data", empleado[0][1])
+    #empleados = obtenerTablaEmpleados(res)
+    return render_template('editarusuario.html', empleados = empleado)
 
 @app.route('/delete/<int:documento_empleado>', methods=('POST',))
 def delete(documento_empleado):

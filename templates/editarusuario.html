@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--stilos propios-->  
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static", filename="css/master.css")}}'/>
+    <title>Alimentos la giralda</title>
+</head>
+
+<body>
+    <header class="bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+            <a class="navbar-brand font-nav" href="/crear">
+                <img src="{{ url_for('static', filename='img/favicon.ico') }}" alt="" width="30" height="24" class="d-inline-block align-text-top">Editar Usuario</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"  aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+    </header>
+    <br>
+    <div class="container-md dash_background">
+        <br>
+        <div style="display: flex;justify-content: center;">
+            <img src="https://www.svgrepo.com/show/10678/avatar.svg" width="100" height="100" alt="usuario avatar">
+        </div>
+        <br>
+        <form name='Editar' id="Editar" class="row g-3 needs-validation" action="/editar" method="POST" novalidate>
+            <div class="form-group col-md-6 ">
+                <input name="Documento" value="{{empleados[0][1]}}" type="hidden">
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6 ">
+                <label>Nombre</label>
+                <input name= "Nombre" type="text"class="form-control" id="nombre"  placeholder="{{empleados[0][2]}}">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Apellido</label>
+                <input name= "Apellido" type="text"class="form-control" id="apellido"  placeholder="{{empleados[0][3]}}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label  class="form-label">Cargo</label>
+                <input name= "Cargo" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][10]}}">
+              </div>
+              <div class="col-md-6">
+                <label  class="form-label">Area</label>
+                <input name= "Area" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][13]}}">
+              </div>  
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <label  class="form-label">Salario</label>
+                  <input name= "Salario" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][9]}}">
+                </div>
+                <div class="col-md-6">
+                  <label  class="form-label">Tipo de Contrato</label>
+                  <input name= "TipodeContrato" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][8]}}">
+                </div>  
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label  class="form-label">Fecha Ingreso</label>
+                  <input name= "FechaIngreso" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][6]}}">
+                </div>
+                <div class="col-md-6">
+                  <label  class="form-label">Fecha Terminación de contrato</label>
+                  <input name= "FechaTerminaciondecontrato" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][7]}}">
+                </div>  
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label  class="form-label">Puntaje</label>
+                  <input name= "Puntaje" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][12]}}">
+                </div>
+                <div class="col-md-6">
+                  <label  class="form-label">Retroalimentación</label>
+                  <input name= "Retroalimentación" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][11]}}">
+                </div>  
+              </div>
+              <br>
+              <div style="display: flex;justify-content:space-around;">
+                <form action="/editar" method="GET">
+                    <input type="submit" class="btn botonverde btn-sm" value="Editar">
+                </form>
+                <input type="button" class="btn botonamarillo" value="Cancelar" onClick="history.go(-1);">
+            </div>
+        </form>
+        <br>
+    </div>
+<br>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+      (function () {
+        'use strict'
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+          .forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+              }
+              form.classList.add('was-validated')
+            }, false)
+          })
+      })()
+    </script>
+  </body>
+</html>

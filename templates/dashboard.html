@@ -83,7 +83,13 @@
                             <td> {{ empleado.area }} </td>
                             <td> {{ empleado.salario }} </td>
                             <td> {{ empleado.retro }} </td>
-                            <td><button type="button" class="btn botonverde"><i class="bi bi-pencil-square"></i>Editar</button>
+                            <td>
+                                <form action="{{ url_for('paginaEditar', documento_empleado=empleado.documento) }}">
+                                    <i class="bi bi-pencil-square"></i>
+                                    <input type="submit" value="Editar"
+                                            class="btn botonverde btn-sm"
+                                            onclick="return confirm('¿Seguro que desea editar los datos de este empleado?')">
+                                </form>
                             </td>
                             <td>
                                 <form action="{{ url_for('delete', documento_empleado=empleado.documento) }}" method="POST">
