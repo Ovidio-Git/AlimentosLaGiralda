@@ -34,57 +34,56 @@
         <br>
         <form name='Editar' id="Editar" class="row g-3 needs-validation" action="/editar" method="POST" novalidate>
             <div class="form-group col-md-6 ">
-                <label>Documento de identidad</label>
-                <input type="text"class="form-control" id="nombre"  placeholder="{{empleados[0][1]}}">
-              </div>
+                <input name="Documento" value="{{empleados[0][1]}}" type="hidden">
+            </div>
             <div class="row">
               <div class="form-group col-md-6 ">
                 <label>Nombre</label>
-                <input type="text"class="form-control" id="nombre"  placeholder="{{empleados[0][2]}}">
+                <input name= "Nombre" type="text"class="form-control" id="nombre"  placeholder="{{empleados[0][2]}}">
               </div>
               <div class="form-group col-md-6">
                 <label>Apellido</label>
-                <input type="text"class="form-control" id="apellido"  placeholder="{{empleados[0][3]}}">
+                <input name= "Apellido" type="text"class="form-control" id="apellido"  placeholder="{{empleados[0][3]}}">
               </div>
             </div>
             <div class="row">
               <div class="col-md-6">
                 <label  class="form-label">Cargo</label>
-                <input type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][10]}}">
+                <input name= "Cargo" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][10]}}">
               </div>
               <div class="col-md-6">
                 <label  class="form-label">Area</label>
-                <input type="text"class="form-control" id="Area"  placeholder="{{empleados[0][13]}}">
+                <input name= "Area" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][13]}}">
               </div>  
             </div>
             <div class="row">
                 <div class="col-md-6">
                   <label  class="form-label">Salario</label>
-                  <input type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][9]}}">
+                  <input name= "Salario" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][9]}}">
                 </div>
                 <div class="col-md-6">
                   <label  class="form-label">Tipo de Contrato</label>
-                  <input type="text"class="form-control" id="Area"  placeholder="{{empleados[0][8]}}">
+                  <input name= "TipodeContrato" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][8]}}">
                 </div>  
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <label  class="form-label">Fecha Ingreso</label>
-                  <input type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][6]}}">
+                  <input name= "FechaIngreso" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][6]}}">
                 </div>
                 <div class="col-md-6">
                   <label  class="form-label">Fecha Terminación de contrato</label>
-                  <input type="text"class="form-control" id="Area"  placeholder="{{empleados[0][7]}}">
+                  <input name= "FechaTerminaciondecontrato" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][7]}}">
                 </div>  
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <label  class="form-label">Puntaje</label>
-                  <input type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][12]}}">
+                  <input name= "Puntaje" type="text"class="form-control" id="cargo"  placeholder="{{empleados[0][12]}}">
                 </div>
                 <div class="col-md-6">
                   <label  class="form-label">Retroalimentación</label>
-                  <input type="text"class="form-control" id="Area"  placeholder="{{empleados[0][11]}}">
+                  <input name= "Retroalimentación" type="text"class="form-control" id="Area"  placeholder="{{empleados[0][11]}}">
                 </div>  
               </div>
               <br>
