@@ -3,7 +3,7 @@ from flask import request
 from markupsafe import escape
 
 #para mejorar login
-from werkzeug.security import check_password_hash
+from werkzeug.security import check_password_hash, generate_password_hash
 from flask import session, flash
 
 # Formularios
@@ -73,7 +73,7 @@ def crearEmpleado(form):
         return False
 
     sql2 = """INSERT INTO usuarios VALUES (?,?,?,?);"""
-    res2 = ejecutar_acc(sql2, (res, form["documento"], form["documento"], 3))
+    res2 = ejecutar_acc(sql2, (res, form["documento"], generate_password_hash(form["documento"]), 3))
 
     if res2 == 0:
         return False
@@ -116,11 +116,7 @@ def login():
         if len(res)>0:
             #recupero la clave que viene de la base de datos
             cbd = res[0][1]
-            #compruebo la clave --- debo importar ::  from werkzeug.security import check_password_hash
-            #check_password_hash(cbd,cla):
-            if cbd == cla: # Lo uso asi por que no tengo en este momento para crear las contrasenas con hash
-                #Cargo los datos en una variable de sesion -- tengo que importarla con:: from flask import session
-                # y queda la informacion disponible para compartirlas con otros modulos de la aplicacion
+            if check_password_hash(cbd,cla): 
                 session.clear()     #limpio la sesion
                 session['id'] = res[0][0]
                 session['usr'] = usu
