@@ -144,30 +144,3 @@ h1 {
     text-align         : center;
     color              : lightgray;
 }
-
-.c1 {
-    width      : 10%;
-    display    : inline;
-    float      : left;
-    overflow-x : hidden;
-}
-.c2 {
-    width      : 20%;
-    display    : inline;
-    float      : left;
-    overflow-x : hidden;
-}
-
-.c3 {
-    width      : 30%;
-    display    : inline;
-    float      : left;
-    overflow-x : hidden;
-}
-
-.c4 {
-    width      : 40%;
-    display    : inline;
-    float      : left;
-    overflow-x : hidden;
-}

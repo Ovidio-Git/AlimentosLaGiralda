@@ -8,6 +8,8 @@ Trabajar con la base de datos real.
                             y retornan los registros  (list - RecordSet, ResultSet)
 """
 import sqlite3
+import traceback
+import sys
 
 NOM_BD = 'lagiralda.db'
 
@@ -42,3 +44,16 @@ def ejecutar_sel_filter(sql, data) -> list:
     except:
         res = None
     return res
+
+def ejecucucion_directa(sentencia):
+    try:
+        with sqlite3.connect(NOM_BD) as con:  # Conectarse a la base de datos
+            cur = con.cursor()                # Crea un área intermedia para gestión de los contenidos
+            res = cur.execute(sentencia)
+            con.commit()                      # hacer efectiva la consulta
+    except sqlite3.Error as er:
+        print('SQLite error: %s' % (' '.join(er.args)))
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
+    con.close()
