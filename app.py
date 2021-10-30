@@ -6,7 +6,7 @@ from flask import session, flash
 # Formularios
 from forms import Search, LogIn,Form
 # Base de datos
-from bdatos import ejecutar_sel, ejecutar_acc, ejecutar_sel_filter
+from bdatos import ejecutar_sel, ejecutar_acc, ejecutar_sel_filter,ejecucucion_directa
 import os
 
 app = Flask(__name__)
@@ -151,20 +151,30 @@ def search():
 # Ruta de administradores para editar los datos que se muestran en la tabla de conglomerado de empleados
 @app.route('/editar', methods=('POST',))
 def editar():
-    nombre  = request.form.get('Nombre')
-    Documento  = request.form.get('Documento')
-    Apellido  = request.form.get('Apellido')
-    Cargo  = request.form.get('Cargo')
-    Area  = request.form.get('Area')
-    Salario  = request.form.get('Salario')
+    nombre          = request.form.get('Nombre')
+    Documento       = request.form.get('Documento')
+    Apellido        = request.form.get('Apellido')
+    Cargo           = request.form.get('Cargo')
+    Area            = request.form.get('Area')
+    Salario         = request.form.get('Salario')
     TipodeContrato  = request.form.get('TipodeContrato')
-    FechaIngreso  = request.form.get('FechaIngreso')
+    FechaIngreso    = request.form.get('FechaIngreso')
     FechaTerminaciondecontrato  = request.form.get('FechaTerminaciondecontrato')
-    Puntaje  = request.form.get('Puntaje')
-    Retroalimentacion  = request.form.get('Retroalimentacion')
-    sql=f'UPDATE empleados SET nombre={nombre},apellido={Apellido},cargo={Cargo},Area={Area},puntaje={Puntaje},retroalimentación={Retroalimentacion},salario={Salario},fecingreso={FechaIngreso},fecterminacion={FechaTerminaciondecontrato},tipodeContrato={TipodeContrato}  WHERE documento = {Documento}'
-    print("sql query", sql)
-    ejecutar_sel(sql)
+    Puntaje                     = request.form.get('Puntaje')
+    Retroalimentacion           = request.form.get('Retroalimentacion')
+    sql="""UPDATE empleados 
+        SET nombre='%s',
+            apellido='%s',
+            cargo='%s',
+            area='%s',
+            puntaje=%s,
+            retroalimentacion='%s',
+            salario=%s,
+            fecingreso='%s',
+            fecterminacion='%s',
+            tipocontrato='%s'  
+        WHERE documento = %s"""% (nombre,Apellido,Cargo,Area,Puntaje,Retroalimentacion,Salario,FechaIngreso,FechaTerminaciondecontrato,TipodeContrato,Documento)
+    ejecucucion_directa(sql)
     return redirect(url_for('dashboard'))
 
 # Ruta de administradores que lleva al formulario para editar los datos de los empleados
@@ -172,13 +182,11 @@ def editar():
 def paginaEditar(documento_empleado):
     sql = 'SELECT * FROM empleados WHERE documento = %s'% (documento_empleado)
     empleado = ejecutar_sel(sql)
-    print("data", empleado[0][1])
     return render_template('editarusuario.html', empleados = empleado)
 
 # Ruta de administradores para eliminar empleados de la tabla de conglomerado de empleados
 @app.route('/delete/<int:documento_empleado>', methods=('POST',))
 def delete(documento_empleado):
-    print("documento empleado", documento_empleado)
     sql='DELETE FROM empleados WHERE documento = %s'% (documento_empleado)
     ejecutar_sel(sql)
     return redirect(url_for('dashboard'))
