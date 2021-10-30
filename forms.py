@@ -31,3 +31,19 @@ class Form(FlaskForm):
     tipoUsuario = TextField('Tipo de Usuario')
     btn = SubmitField('Crear')
 
+class Form2(FlaskForm):
+    documento = TextField('Documento',validators=[InputRequired(), Length(5, 40, "El documento debe contener al menos %(min)d digitos")],render_kw={"placeholder": ""})
+    nombre = TextField('Nombre',validators=[InputRequired()])
+    apellido = TextField('Apellido')
+    cargo = TextField('Cargo')
+    fecIngreso = DateField('Fecha de Ingreso')
+    tipoContrato = TextField('Tipo de Contrato')
+    terminacion = DateField('Terminacion')
+    area = TextField('Area')
+    salario = TextField('Salario')
+    retro = TextField('Retroalimentacion')
+    puntaje = TextField('Puntaje')
+    tipoUsuario = TextField('Tipo de Usuario')
+    btn = SubmitField('Crear')
+
+
